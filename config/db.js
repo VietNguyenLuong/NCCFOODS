@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 async function connectDB() {
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/ncc_foods');
+    await mongoose.connect('mongodb+srv://nguyenvietluong02072000_db_user:eX6hqDCRZJjqKgeL@nccfood.utql4va.mongodb.net/?appName=NCCFOOD');
 
     console.log('✅ MongoDB connected successfully');
   } catch (error) {
