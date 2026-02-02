@@ -1,0 +1,11 @@
+var express = require('express');
+var router = express.Router();
+var nhomsanphamController = require("../public/controllers/NhomSanPhamController");
+router.get('/getall',nhomsanphamController.getcategory);
+router.get('/getbypage',nhomsanphamController.getall);
+router.post("/create",nhomsanphamController.createNhomSanPham);
+router.get("/getbyid/:id", nhomsanphamController.getbyid);
+router.delete("/delete/:id", nhomsanphamController.delete);
+router.post("/updatestatus/:id", nhomsanphamController.updateStatus);
+router.post("/update", nhomsanphamController.update);
+module.exports = router;

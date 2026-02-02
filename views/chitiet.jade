@@ -1,0 +1,60 @@
+//- product-detail.pug
+extends layout
+block styles
+  link(rel="stylesheet", href="/stylesheets/chitiet.css")
+block content
+  .product-detail
+    .container
+
+      // Breadcrumb
+      .breadcrumb
+        a(href="/") Trang chủ
+        span /
+        a(href="#") Quà tặng trái cây
+        span /
+        span= data.name
+
+      // Main content
+      .product-main
+        // LEFT: IMAGE
+        .product-gallery
+          img(src=data.image_url, alt="Hộp dâu JouFarm")
+
+        // RIGHT: INFO
+        .product-info
+          h1= data.name
+
+          .meta
+            span Mã sản phẩm:
+            strong SP358259
+            span | Tình trạng:
+            strong.instock Còn hàng
+
+          .voucher
+            span.tag FREESHIP45K
+            span.tag FREESHIPMF
+
+          .price= Number(data.price).toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' })
+
+          .buy-box
+            .quantity
+              button(type="button" onclick="decreaseQty()") -
+              input(type="text" id="number_sp" value="1" readonly)
+              button(type="button" onclick="increaseQty()") +
+
+            button.btn-add-cart(onclick=`ThemGioHang('${data._id}')`) THÊM VÀO GIỎ
+
+      // Bottom info
+      .product-bottom
+        .product-desc
+          h3 Mô tả sản phẩm
+          p=data.description
+
+        .shipping-info
+          h3 DỊCH VỤ GIAO HÀNG
+          ul
+            li ✔ Cam kết 100% chính hãng
+            li 🚚 Giao hàng dự kiến: Thứ 2 - Chủ nhật (8h00 - 21h00)
+            li 📞 Hỗ trợ 24/7 qua Facebook, Instagram & Phone
+
+  script(src="/javascripts/chitiet.js")

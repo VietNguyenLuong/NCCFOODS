@@ -1,0 +1,315 @@
+body {
+  margin: 0;
+  background: #f5f7fb;
+}
+
+.admin-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+/* SIDEBAR */
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-title {
+  font-size: 12px;
+  color: #999;
+  margin: 15px 0 5px;
+}
+
+.menu li a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.menu li.active a,
+.menu li a:hover {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+/* MAIN */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOPBAR */
+.topbar {
+  background: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* ⭐ QUAN TRỌNG */
+  border-bottom: 1px solid #eee;
+}
+
+.search {
+  width: 400px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+/* BODY */
+.content-body {
+  /* display: flex;
+  padding: 20px;
+  gap: 20px; */
+}
+
+/* PRODUCTS */
+.product-section {
+  flex: 3;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.product-card {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+}
+
+.price {
+  color: #4f46e5;
+  font-weight: bold;
+}
+
+/* CART */
+.cart-section {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cart-total {
+  margin-bottom: 20px;
+}
+
+.cart-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primary {
+  padding: 10px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+}
+
+.btn-outline {
+  flex: 1;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  border-radius: 6px;
+}
+.modal.show {
+  display: block;
+}
+
+
+/* Modal chung */
+.modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.modal-header {
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-title {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+/* Form */
+.form-label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.form-control {
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+/* Checkbox row */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Preview ảnh */
+#preview {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 5px;
+}
+
+/* Footer */
+.modal-footer {
+  border-top: 1px solid #e5e7eb;
+  padding: 12px 20px;
+}
+
+.modal-footer .btn {
+  min-width: 90px;
+  border-radius: 8px;
+}
+@media (min-width: 1025px)  {
+   .sidebar {
+    display: block;
+  width: 260px;
+  background: #fff;
+  padding: 20px;
+  border-right: 1px solid #eee;
+}
+
+
+}
+@media (min-width: 720px) and (max-width: 1024px) {
+   
+}
+@media (max-width: 719px) {
+  .sidebar {
+    display: none;
+  width: 260px;
+  background: #fff;
+  padding: 20px;
+  border-right: 1px solid #eee;
+}
+
+}
+
+/* ICON MENU */
+.menu-icon {
+   font-size: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  z-index: 1002;
+}
+
+/* OVERLAY */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+/* MENU */
+.mobile-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background: #fff;
+  transform: translateX(-100%);
+  transition: 0.3s ease;
+  padding: 16px;
+}
+
+/* HEADER MENU */
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 22px;
+}
+
+/* LIST */
+.menu-list {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-list li {
+  margin-bottom: 14px;
+}
+
+.menu-list a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+/* ACTIVE */
+.mobile-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-overlay.active .mobile-menu {
+  transform: translateX(0);
+}

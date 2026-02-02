@@ -1,0 +1,94 @@
+extends layoutQuanTri
+block styles
+  link(rel="stylesheet", href="/stylesheets/donhang.css")
+block content
+  .page-wrapper
+    // ===== HEADER =====
+    .page-header
+      h1 QUẢN LÝ BILL CHUYỂN KHOẢN
+      .breadcrumb
+        a(href="#") Quản trị hệ thống
+        span /
+        span Quản lý Bill chuyển khoản
+
+    // ===== CARD =====
+    .card
+      .card-header
+        h3 Danh sách bill chuyển khoản
+
+      .card-tools
+        .show-entries
+          span Show
+          select
+            option 10
+            option 25
+            option 50
+          span entries
+
+        .search-box
+          label Search:
+          input#searchName(type="text" placeholder="" onchange="loadData()")
+
+      // ===== TABLE =====
+      table.product-table
+        thead
+          tr
+            th Mã đơn
+            th Tên khách hàng
+            th Số điện thoại
+            th Địa chỉ
+            th Trạng thái
+            th Ngày đăt hàng
+            th Thao tác
+        tbody
+            each item in orderss
+                tr
+                    td=item.code
+                    td=item.username
+                    td=item.phone
+                    td=item.address
+                    td
+                      if item.status === 2
+                        span.pending Đang lên đơn
+                      else if item.status === 3
+                        span.success Đã giao
+                      else 
+                        span.success Chờ duyệt
+                    td=new Date(item.order_date).toLocaleDateString('vi-VN')
+                    td
+                      //- a(href=`/donhang/thongtindonhang/${item._id}`).btn-icon.edit ✎
+                      //- a(onclick=`deleteSP('${item._id}')`).btn-icon.delete 🗑
+                      button.btn-view(
+                        type="button"
+                        onclick=`openImageModal('${item.image}', '${item._id}')`
+                        ) Xem bill
+
+    // ===== PAGINATION =====
+    .pagination-wrapper
+      .pagination-info
+        | Showing #{showingStart} to #{showingEnd} of #{totalorders} entries
+
+      ul.pagination
+        if prevPage
+          li.page-item.active
+            a.page-link(href="#") Previous
+        each item in pages
+          li.page-item(class={ active: item.isActive })
+            a.page-link(href=`?page=${item.num}&name=${keyword}`)= item.num
+        if nextPage
+          li.page-item
+            a.page-link(href="#") Next          
+
+  .modal-overlayPayment#imageModal
+    .modalPayment
+      .modalPayment-header
+        h3 Check bill chuyển khoản
+        span.modalPayment-close(onclick="closePaymentModal()") ✕
+
+      .modalPayment-body
+          img#modalImage(src="" alt="Xem ảnh bill")
+        
+      .modalPayment-actions
+        button.btn-cancel(type="button" onclick="closePaymentModal()") Hủy
+        button.btn-confirm(type="button" onclick="XacNhan(2)") Xác nhận có bill
+  script(src="/javascripts/donhang.js")  

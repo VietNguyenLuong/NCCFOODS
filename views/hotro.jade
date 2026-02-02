@@ -1,0 +1,61 @@
+extends layout
+block content
+    section.contact-page
+        .container
+            .breadcrumb
+                a(href="/") Trang chủ
+                span / 
+                span Liên hệ
+
+            .contact-wrapper
+                // LEFT
+                .contact-left
+                    .map
+                        iframe(
+                            src="https://www.google.com/maps?q=183%20Nguyen%20Thai%20Hoc%20Ho%20Chi%20Minh&output=embed"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                        )
+
+                    h3 Thông tin liên hệ
+                    ul.contact-info
+                        li
+                            i.icon-location
+                            div
+                                strong Địa chỉ
+                                p Chi nhánh 1: 183 Nguyễn Thái Học, P. Bến Thành, TP.HCM
+                        li
+                            i.icon-location
+                            div
+                                strong Địa chỉ
+                                p Chi nhánh 2: 42B Trần Huy Liệu, P. Phú Nhuận
+                        li
+                            i.icon-mail
+                            div
+                                strong Email
+                                p hello@morningfruit.com.vn
+                        li
+                            i.icon-phone
+                            div
+                                strong Điện thoại
+                                p Hotline: 0327400880
+                        li
+                            i.icon-time
+                            div
+                                strong Thời gian làm việc
+                                p Thứ 2 – Chủ nhật: 8h – 20h
+
+                // RIGHT
+                .contact-right
+                    h3 Tư Vấn Quà Tặng Doanh Nghiệp
+                    p.desc
+                        | Nếu bạn có thắc mắc gì, có thể gửi yêu cầu cho chúng tôi,
+                        | chúng tôi sẽ liên lạc lại với bạn sớm nhất có thể.
+
+                    form.contact-form
+                        input(type="text" placeholder="Tên của bạn")
+                        .row
+                            input(type="email" placeholder="Email của bạn")
+                            input(type="text" placeholder="Số điện thoại của bạn")
+                        textarea(placeholder="Nội dung")
+                        button(type="submit") GỬI CHO CHÚNG TÔI

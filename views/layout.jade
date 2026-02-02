@@ -1,0 +1,267 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/index.css')
+    link(rel='stylesheet', href='/stylesheets/hotro.css')
+    //- link(rel='stylesheet', href='/stylesheets/chitiet.css')
+    //- link(rel='stylesheet', href='/stylesheets/taikhoan.css')
+    link(rel='stylesheet', href='/stylesheets/sanpham.css')
+    //- link(rel='stylesheet', href='/stylesheets/thongtindonhanguser.css')
+    block styles
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  body
+    header.site-header
+      .header-inner
+
+        // Left menu
+        .header-left
+          .menu-btn#menuToggle
+            span
+            span
+            span
+          span.menu-text 
+        // MOBILE MENU
+        .mobile-menu#mobileMenu
+          .mobile-menu-header
+            span.icon-home 🏠
+            span.close-btn#menuClose ✕
+
+          ul.menu-mobile-list
+            li
+              a(href="/") Trang chủ
+        // Logo
+        .logo
+          | NCC
+          span FOODS
+
+        // Search
+        form(method="GET" action=`/`).search-box
+          input(type="text" name="name" placeholder="Tìm kiếm sản phẩm...")
+          button(type="submit" ) 🔍
+
+        // Right
+        .header-right
+          .header-item.phone
+            span.icon 📞
+            span
+              | Hotline:
+              strong 0865660775
+
+          .header-item#btnLogin
+            span.icon 👤
+            span.name_user#username_token Tài khoản
+
+          .header-item.cart#cartBtn(onclick=`loadCart()`)
+            span.icon 🛒
+            span.name_user Giỏ hàng
+            span.cart-badge#cart-badge 
+            // POPUP CART
+          .cart-popup#cartPopup
+            h4 GIỎ HÀNG
+              .cart-list
+              .cart-total
+                span TỔNG TIỀN:
+                strong= 0
+
+              a.btn-view-cart(onclick=`openPaymentModal()`) Đặt hàng
+     nav.main-menu
+        ul.menu-list
+            li.menu-item.home
+                a(href="/")
+                    span.icon 🏠
+
+            li.menu-item.active
+                a(href="/") Trang chủ 
+    .section-slider
+            .slider-wrapper
+                .slider
+                    .slides
+                        each i in ['/images/anhncc1.png','/images/anhncc2.jpeg','/images/anhncc3.jpeg','/images/anhncc4.jpeg','/images/anhncc5.jpeg']
+                            .slide
+                                img(src=`${i}`, alt="slider")
+
+                    button.prev ‹
+                    button.next ›
+    block content
+
+    footer.site-footer
+      .footer-container
+        .footer-col
+          h4 Về NCC FOOD
+          p
+            | NCC FOOD là thương hiệu trái cây tươi chất lượng cao, với đa dạng sản phẩm
+            | phục vụ mọi nhu cầu: đặc sản vùng miền, trái cây nhập khẩu, quà tặng trái cây,
+            | mâm ngũ quả, nước ép và trái cây cắt sẵn.
+
+        .footer-col
+          h4 Hệ thống cửa hàng
+          p
+            strong Chi nhánh 1:
+            |  183 Nguyễn Thái Học, phường Bến Thành
+          p
+            strong Chi nhánh 2:
+            |  42B Trần Huy Liệu, phường Phú Nhuận
+
+        .footer-col
+          h4 Hỗ trợ khách hàng
+          ul
+            li: a(href="#") Tìm kiếm
+            li: a(href="#") Câu chuyện thương hiệu
+            li: a(href="#") Chính sách thành viên
+            li: a(href="#") Chính sách kiểm hàng
+
+        .footer-col
+          h4 Chăm sóc khách hàng
+          .contact
+            p.phone 📞 0865 660 775
+            p.email hello@morningfruit.com.vn
+          .follow
+            span Bản quyền: NCC.FOODS - Lương Nguyễn Viết
+
+
+  .floating-buttons
+    a.btn-float.contact(href="tel:0865660775")
+        span Liên hệ
+
+    a.btn-float.zalo(href="https://zalo.me/0865660775", target="_blank")
+        img(src="https://hidosport.vn/wp-content/uploads/2023/09/zalo-icon.png", alt="Zalo")
+
+// LOGIN MODAL
+#loginModal.modal
+  .modal-overlay
+  .modal-content
+    button.modal-close(type="button") ×
+
+    h3 Đăng nhập tài khoản
+    p.desc Đăng nhập để tiếp tục mua sắm
+
+    form.login-form#loginForm
+      .form-group
+        input(type="text" name="username" id="username" placeholder="Email hoặc số điện thoại")
+
+      .form-group
+        input(type="password" name="password" id="password" placeholder="Mật khẩu")
+
+      button.btn-login(type="submit") ĐĂNG NHẬP
+
+    .modal-footer
+      a(href="#") Quên mật khẩu?
+      span |
+      a(href="#")#btnAsign Đăng ký
+
+
+// LOGIN MODAL
+#loginModalTaiKhoan.modal
+  .modal-overlayAsign
+  .modal-content
+    button.modal-closeAsign(type="button") ×
+
+    h3 Đăng ký tài khoản
+    p.desc Đăng ký để tiếp tục mua sắm
+
+    form(action="/taikhoan/create" method="POST").login-form
+      .form-group
+        input(type="text" name="username" placeholder="Email hoặc số điện thoại")
+
+      .form-group
+        input(type="password" name="password" placeholder="Mật khẩu")
+
+      .form-group
+        input(type="text" name="phone" placeholder="Số điện thoại")
+
+      .form-group
+        input(type="text" name="address" placeholder="Địa chỉ")
+
+      button.btn-login(type="submit") ĐĂNG KÝ
+
+    .modal-footer
+      a(href="#") Quên mật khẩu?
+      span |
+      a(href="#") Đăng ký
+
+  // Modal overlay
+#notifyModal.modal-overlay
+    .modal-box
+        .modal-icon#modalIcon ✔
+        h3#modalTitle Thành công
+        p#modalMessage Cập nhật thông tin thành công!
+        button.modal-btn(onclick="closeModal()") Đóng
+
+// Modal chuyển khoản
+.modal-overlayPayment#paymentModal
+  .modalPayment
+    .modalPayment-header
+      h3 Thông tin chuyển khoản
+      span.modalPayment-close(onclick="closePaymentModal()") ✕
+
+    .modalPayment-body
+      // ==== THÔNG TIN KHÁCH HÀNG ====
+      .customer-info
+        .form-row
+          label(for="username") Tên khách hàng
+          input#username_bill(
+            type="text"
+            name="username"
+            placeholder="Nhập tên của bạn"
+          )
+
+        .form-row
+          label(for="phone") Số điện thoại
+          input#phone_bill(
+            type="tel"
+            name="phone"
+            placeholder="Nhập số điện thoại"
+          )
+
+        .form-row
+          label(for="address") Địa chỉ
+          input#address_bill(
+            type="text"
+            name="address"
+            placeholder="Nhập địa chỉ"
+          )
+      .bank-info
+        .bank-row
+          span.label Ngân hàng:
+          span.value HANA
+
+        .bank-row
+          span.label Số tài khoản:
+          span.value 371-910026-22104
+
+        .bank-row
+          span.label Người hưởng thụ:
+          span.value 주식회사 끄엉엔씨푸르트무역
+
+        .bank-row-note
+          span.label Note:
+          textarea#notebill(
+            name="note"
+            placeholder="Nhập ghi chú cho đơn hàng"
+            rows="4"
+            readonly
+          )
+
+        .bank-row 
+          span.label Để shop hỗ trợ mình nhanh hơn và chính xác hơn, anh/chị vui lòng copy nội dung đơn hàng và gửi trực tiếp vào inbox Facebook giúp shop nha.Bên shop sẽ kiểm tra, xác nhận đơn và tư vấn chi tiết cho mình ngay ạ ❤️.Cảm ơn anh/chị đã tin tưởng và liên hệ với shop 🌷
+
+
+      .upload-section
+        label Đính kèm bill chuyển khoản
+        input(type="file" id="billFile" name="bill" accept="image/*")
+        img#preview(
+        src="#"
+        alt="Preview ảnh"
+        style="margin-top:10px; max-height:200px; display:none;"
+    )
+    .modalPayment-actions
+      button.btn-cancel(type="button" onclick="closePaymentModal()") Hủy
+      button.btn-confirm(type="button" onclick="PostMess()") Gửi Mess
+      button.btn-confirm(type="button" onclick="Order()") Xác nhận đặt đơn
+
+
+    script(src="/javascripts/layout.js")
+    script(src="/javascripts/slider.js")

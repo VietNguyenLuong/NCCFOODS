@@ -1,0 +1,58 @@
+/* OVERLAY */
+.modal-overlayPayment {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+/* MODAL */
+.modalPayment {
+  background: #fff;
+  width: 90%;
+  max-width: 520px;
+  max-height: 90vh;           /* ⭐ không tràn màn hình */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;           /* ⭐ chặn tràn */
+}
+
+/* HEADER */
+.modalPayment-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* BODY */
+.modalPayment-body {
+  padding: 16px;
+  flex: 1;
+  overflow: auto;             /* ⭐ scroll khi ảnh cao */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IMAGE FIX */
+#modalImage {
+  max-width: 100%;            /* ⭐ chặn tràn ngang */
+  max-height: 70vh;           /* ⭐ chặn tràn dọc */
+  object-fit: contain;        /* ⭐ giữ tỉ lệ ảnh */
+  border-radius: 8px;
+}
+
+/* ACTIONS */
+.modalPayment-actions {
+  padding: 14px 18px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

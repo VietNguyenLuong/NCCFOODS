@@ -1,0 +1,79 @@
+extends layoutQuanTri
+block styles
+  link(rel="stylesheet", href="/stylesheets/donhang.css")
+block content
+  .page-wrapper
+    // ===== HEADER =====
+    .page-header
+      h1 QUẢN LÝ ĐƠN HÀNG
+      .breadcrumb
+        a(href="#") Quản trị hệ thống
+        span /
+        span Quản lý đơn hàng
+
+    // ===== CARD =====
+    .card
+      .card-header
+        h3 Danh sách đơn hàng
+        button.btn(onclick=`addproducts()`).btn-primary Thêm mới sản phẩm
+
+      .card-tools
+        .show-entries
+          span Show
+          select
+            option 10
+            option 25
+            option 50
+          span entries
+
+        .search-box
+          label Search:
+          input#searchName(type="text" placeholder="" onchange="loadData()")
+
+      // ===== TABLE =====
+      table.product-table
+        thead
+          tr
+            th Mã đơn
+            th Tên khách hàng
+            th Số điện thoại
+            th Địa chỉ
+            th Trạng thái
+            th Ngày đăt hàng
+            th Thao tác
+        tbody
+            each item in orderss
+                tr
+                    td=item.code
+                    td=item.username
+                    td=item.phone
+                    td=item.address
+                    td
+                      if item.status === 2
+                        span.pending Đang lên đơn
+                      else if item.status === 3
+                        span.success Đã giao
+                      else 
+                        span.success Chờ duyệt
+                    td=new Date(item.order_date).toLocaleDateString('vi-VN')
+                    td
+                      a(href=`/donhang/thongtindonhang/${item._id}`).btn-icon.edit ✎
+                      a(onclick=`deleteSP('${item._id}')`).btn-icon.delete 🗑
+
+    // ===== PAGINATION =====
+    .pagination-wrapper
+      .pagination-info
+        | Showing #{showingStart} to #{showingEnd} of #{totalorders} entries
+
+      ul.pagination
+        if prevPage
+          li.page-item.active
+            a.page-link(href="#") Previous
+        each item in pages
+          li.page-item(class={ active: item.isActive })
+            a.page-link(href=`?page=${item.num}&name=${keyword}`)= item.num
+        if nextPage
+          li.page-item
+            a.page-link(href="#") Next          
+
+  script(src="/javascripts/donhang.js")  

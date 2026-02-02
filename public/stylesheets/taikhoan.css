@@ -1,0 +1,219 @@
+
+/* ===== LAYOUT ===== */
+
+
+/* ===== SIDEBAR ===== */
+.section-slider {
+  display: none;
+}
+.account-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px ;
+  background: #730001;
+  font-weight: bold;
+  color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.account-user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.sidebar-menu {
+  list-style: none;
+}
+
+.sidebar-menu li {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.sidebar-menu a {
+  display: block;
+  padding: 12px 15px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+  background: #e9f4ff;
+  color: #730001;
+}
+
+/* ===== CONTENT ===== */
+.account-content {
+  flex: 1;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  padding: 20px 30px;
+}
+
+/* ===== TITLE ===== */
+.account-title {
+  background: #f7f9fb;
+  padding: 12px 15px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+/* ===== FORM ===== */
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-row label {
+  width: 180px;
+  font-size: 14px;
+}
+
+.form-row label span {
+  color: red;
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  outline: none;
+  border-color: #730001;
+}
+
+/* ===== GENDER ===== */
+.gender-group {
+  display: flex;
+  gap: 10px;
+}
+
+.gender-group button {
+  padding: 6px 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.gender-group button.active {
+  background: #730001;
+  color: #fff;
+  border-color: #730001;
+}
+
+/* ===== DOB ===== */
+.dob-group {
+  display: flex;
+  gap: 10px;
+}
+
+
+/* ===== BUTTON ===== */
+.form-actions {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.form-actions button {
+  background: #730001;
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.form-actions button:hover {
+  background: #730001;
+}
+
+#pending {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+#pending .order-table {
+  min-width: 900px;
+}
+/* TABLE */
+.content-section {
+  width: 100%;
+  overflow-x: auto;
+}
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.order-table th {
+background-color: #730001;
+color: #fff;
+ white-space: nowrap;
+}
+
+
+.order-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+   white-space: nowrap;
+}
+
+.pending {
+  color: orange;
+}
+
+.success {
+  color: green;
+}
+
+@media (min-width: 1025px)  {
+  .account-wrapper {
+  max-width: 1300px;
+  margin: 80px auto;
+  display: flex;
+  gap: 20px;
+  padding-top: 70px;
+}
+ .account-sidebar {
+  width: 260px;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+}
+
+.dob-group select {
+  width: 100px;
+}
+}
+@media (min-width: 720px) and (max-width: 1024px) {
+   
+}
+@media (max-width: 719px) {
+  .account-wrapper {
+  max-width: 1300px;
+  margin: 80px auto;
+  display: block;
+  gap: 20px;
+  padding-top: 50px;
+}
+
+  .account-sidebar {
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+}
+.dob-group select {
+     width: auto; 
+}
+}

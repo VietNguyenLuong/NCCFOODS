@@ -1,0 +1,167 @@
+.product-detail {
+  padding: 150px 0 70px 0;
+  background-color: #fff;
+}
+.section-slider {
+  display: none;
+}
+.breadcrumb {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb a {
+  color: #ff6a00;
+  text-decoration: none;
+}
+
+.product-gallery
+{
+   border: 2px solid #ddd;
+  border-radius: 10px;
+}
+
+/* IMAGE */
+.product-gallery img {
+  width: 100%;
+  height: 420px; 
+  border-radius: 8px;
+  object-fit: cover;     /* ⭐ quan trọng nhất */
+  display: block;
+  transition: transform 0.3s ease;
+  object-fit: contain;
+}
+
+/* INFO */
+.product-info h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.meta {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.instock {
+  color: green;
+}
+
+.voucher {
+  margin: 12px 0;
+}
+
+.tag {
+  display: inline-block;
+  background: #ffe8d9;
+  color: #ff6a00;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-right: 6px;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: bold;
+  color: red;
+  margin: 15px 0;
+}
+
+/* BUY */
+.buy-box {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.quantity {
+  display: flex;
+  border: 1px solid #ddd;
+}
+
+.quantity button {
+  width: 36px;
+  border: none;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.quantity input {
+  width: 50px;
+  text-align: center;
+  border: none;
+}
+
+.btn-add-cart {
+  background: #ee6b3d;
+  color: #fff;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.product-desc,
+.shipping-info {
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.shipping-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.shipping-info li {
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (min-width: 1025px)  {
+   .product-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+
+}
+/* BOTTOM */
+.product-bottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+}
+@media (min-width: 720px) and (max-width: 1024px) {
+  .product-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+
+}
+/* BOTTOM */
+.product-bottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  margin-top: 40px;
+}
+}
+@media (max-width: 719px) {
+  .product-main {
+  grid-template-columns: 1fr 0;
+  gap: 40px;
+}
+/* BOTTOM */
+.product-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+}

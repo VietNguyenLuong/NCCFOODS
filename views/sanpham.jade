@@ -1,0 +1,43 @@
+extends layout
+block content
+        section.gift-section.sanpham
+            .container
+                    section.gift-section
+                        .container
+                        .section-title
+                            span= "TRÁI CÂY NGON HÔM NAY"
+                        // 🔍 SEARCH BOX
+                        .search-box-sp
+                            form(method="GET" action=`/sanpham/getbycategory/${categoryId}`)
+                                input.search-input-sp(
+                                    type="text"
+                                    name="keyword"
+                                    placeholder="Tìm sản phẩm..."
+                                    value=keyword
+                                )
+                                button.search-btn-sp(type="submit") 🔍
+                        .product-grid
+                            each item in data
+                                .product-card(onclick=`window.location.href='http://localhost:3000/sanpham/getbyid/${item._id}'`)
+                                    .thumb
+                                        img(src=item.image_url alt=item.name)
+
+                                    h3.name= item.name
+                                    .price= Number(item.price).toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' })
+                                    button.btn-buy 🛍 CHỌN MUA
+                        .pagination
+                            if currentPage > 1
+                                a.page-btn(
+                                    href=`/sanpham/getbycategory/${categoryId}?page=${currentPage - 1}&keyword=${keyword || ""}`
+                                ) «
+
+                            each page in Array(totalPages).fill(0).map((_, i) => i + 1)
+                                a.page-btn(
+                                    href=`/sanpham/getbycategory/${categoryId}?page=${page}&keyword=${keyword || ""}`
+                                    class=page === currentPage ? "active" : ""
+                                )= page
+
+                            if currentPage < totalPages
+                                a.page-btn(
+                                    href=`/sanpham/getbycategory/${categoryId}?page=${currentPage + 1}&keyword=${keyword || ""}`
+                                ) » 

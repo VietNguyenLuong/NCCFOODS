@@ -1,0 +1,72 @@
+extends layout
+block content
+    //- nav.main-menu
+    //-     ul.menu-list
+    //-         li.menu-item.home
+    //-             a(href="/")
+    //-                 span.icon 🏠
+
+    //-         li.menu-item.active
+    //-             a(href="/") Trang chủ
+
+    //- .section-slider
+    //-         .slider-wrapper
+    //-             .slider
+    //-                 .slides
+    //-                     each i in ['/images/anhncc1.png','/images/anhncc2.jpeg','/images/anhncc3.jpeg','/images/anhncc4.jpeg','/images/anhncc5.jpeg']
+    //-                         .slide
+    //-                             img(src=`${i}`, alt="slider")
+
+    //-                 button.prev ‹
+    //-                 button.next ›
+    .center
+        form(method="GET" action="/").search-box-min
+            input(type="text" name="name" placeholder="Tìm kiếm sản phẩm...")
+            button(type="submit") 🔍
+    section.gift-section
+        .container
+            each group in groupedProducts
+                section.gift-section
+                    .container
+                    .section-title
+                        span= group.category_name
+
+                    .product-grid
+                        each item in group.products
+                            .product-card(
+                                class=item.stock === 0 ? "out-of-stock" : ""
+                                onclick=item.stock === 0
+                                    ? "return false"
+                                    : "window.location.href='/sanpham/getbyid/" + item._id + "'"
+                                )
+                                .thumb
+                                    img(src=item.image_url alt=item.name)
+
+                                    if item.stock === 0
+                                        .stock-overlay HẾT HÀNG
+
+                                h3.name= item.name
+                                .price= Number(item.price).toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' })
+                                button.btn-buy(disabled=item.stock === 0) 🛍 CHỌN MUA
+
+                    .more-btn-wrap
+                        a.btn-outline-orange(href=`sanpham/getbycategory/${group._id}`) Xem thêm sản phẩm 
+
+    section.partner-section
+        .section-title
+            span Đối tác đã tin tưởng
+
+        .partner-slider
+            button.nav ‹
+
+            .partner-track
+                each logo in ['/images/logoTH.png','/images/logoFAMI.jpg']
+                    .partner-item
+                    img(src=`${logo}` alt="partner")
+
+            button.nav ›
+
+
+
+
+

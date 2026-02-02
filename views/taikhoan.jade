@@ -1,0 +1,123 @@
+extends layout
+block styles
+  link(rel="stylesheet", href="/stylesheets/taikhoan.css")
+block content
+  .account-wrapper
+    // ===== SIDEBAR ===== 
+    .account-sidebar
+      .account-user
+        img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKT-zEVF-E4SEkm3us25N1DoHQLnC4XWumjw&s")
+        span= user.username
+
+      ul.sidebar-menu
+        li
+          a.active(href="#account" data-target="account") Thông tin của Tôi
+        li
+          a(href="#pending" data-target="pending") Đơn hàng chưa duyệt
+        li
+          a(href="#ordered" data-target="ordered") Đơn hàng đã đặt
+        li
+          a(href="#") Đăng xuất
+
+    // ===== CONTENT =====
+    .account-content
+
+      // === THÔNG TIN TÀI KHOẢN ===
+      .content-section#account.active
+        .account-title Thông tin tài khoản
+        form(action="/taikhoan/update" method="POST")
+          input(type="hidden" id="id_taikhoan" name="_id" value=user._id)
+
+          .form-row
+            label Họ tên đầy đủ:
+              span *
+            input(type="text" id="username_taikhoan" name="username" value=user.username)
+
+          .form-row
+            label Mật khẩu:
+              span *
+            input(type="password" id="password_taikhoan" name="password" value=user.password)
+
+          .form-row
+            label Điện thoại:
+              span *
+            input(type="text" id="phone_taikhoan" name="phone" value=user.phone)
+
+          .form-row
+            label Địa chỉ:
+              span *
+            input(type="text" id="address_taikhoan" name="address" value=user.address)
+
+          .form-row
+            label Giới tính:
+            .gender-group
+              button(type="button" class="active") Nam
+              button(type="button") Nữ
+
+          .form-row
+            label Ngày sinh:
+            .dob-group.row
+              select.col-sm-6
+                option 30
+              select.col-sm-6
+                option 11
+              select.col-sm-6
+                option Năm
+
+          .form-actions
+            button(type="submit") Cập nhật thông tin
+
+      // === ĐƠN HÀNG CHƯA DUYỆT ===
+      .content-section#pending
+        .account-title Đơn hàng chưa duyệt
+        table.order-table
+          thead
+            tr
+              th Mã đơn
+              th Ngày đặt
+              th Ngày dự kiến giao hàng
+              th Tổng tiền
+              th Trạng thái
+              th Thao tác
+          tbody
+            each item in data
+              tr
+                td=item.code
+                td=new Date(item.order_date).toLocaleDateString('vi-VN')
+                td=new Date(item.xpected_delivery_date).toLocaleDateString('vi-VN')
+                td=item.total
+                td
+                  if item.status === 1
+                    span.pending Chờ duyệt
+                  else if item.status === 0
+                    span.pending Hủy
+                td
+                  a(href=`/donhang/thongtindonhanguser/${item._id}`).btn-icon.edit ✎
+                  a(onclick=`deleteSP('${item._id}')`).btn-icon.delete 🗑
+
+      // === ĐƠN HÀNG ĐÃ ĐẶT ===
+      .content-section#ordered
+        .account-title Đơn hàng đã đặt
+        table.order-table
+          thead
+            tr
+              th Mã đơn
+              th Ngày đặt
+              th Ngày dự kiến giao hàng
+              th Tổng tiền
+              th Trạng thái
+          tbody
+            each item in ordersSuccess
+              tr
+                td=item.code
+                td=new Date(item.order_date).toLocaleDateString('vi-VN')
+                td=new Date(item.xpected_delivery_date).toLocaleDateString('vi-VN')
+                td=item.total
+                td
+                  if item.status === 2
+                    span.pending Đang lên đơn
+                  else if item.status === 3
+                    span.success Đã giao
+                  else if item.status === 0
+                    span.pending Hủy
+  script(src="/javascripts/taikhoan.js")

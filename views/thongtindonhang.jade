@@ -1,0 +1,70 @@
+extends layoutQuanTri
+block content
+  .page-wrapper
+    // ===== HEADER =====
+    .page-header
+      h1 Giỏ hàng
+      .breadcrumb
+        a(href="#") Quản trị hệ thống
+        span /
+        span Giỏ hàng
+
+    // ===== CARD =====
+    .card
+      .card-header
+        h3 Danh sách sản phẩm
+
+      .card-body
+        table.cart-table
+          thead
+            tr
+              th
+              th Sản phẩm
+              th Đơn giá
+              th Số lượng
+              th Tổng tiền
+              th Thao tác
+
+          tbody
+            each item in cart
+              tr
+                td
+                  img.product-img(
+                    src=item.image_url
+                    alt=item.name
+                  )
+                td= item.name
+                td.price #{Number(item.price).toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' })} 
+                td
+                  input(
+                    type="number"
+                    value=item.quantity
+                    min="1"
+                    onchange=`updateQty('${item._id}', this.value,'${order_id}')`
+                  )
+                td.total #{Number(item.total).toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' })} 
+                td
+                  a.btn-icon.delete(
+                    onclick=`removeItem('${item._id}')`
+                  ) 🗑
+
+    // ===== ORDER FORM =====
+    .card
+      .card-header
+        h3 Mua hàng
+
+      .card-body
+        form
+          .row.g-3
+            .col-md-6
+              label.form-label Họ tên
+              input.form-control(type="text")
+
+            .col-md-6
+              label.form-label Số điện thoại
+              input.form-control(type="text")
+
+            .col-md-12
+              button.btn.btn-primary(type="button" onclick=`XacNhan(3,'${order_id}')`) Xác nhận
+
+  script(src="/javascripts/cart.js")

@@ -1,0 +1,100 @@
+
+
+body {
+  margin: 0;
+  background: #f5f5f5;
+}
+
+/* ===== HEADER ===== */
+.topbar {
+  /* color: white; */
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.topbar .logo {
+  font-weight: bold;
+  margin-right: 30px;
+}
+
+.topbar nav a {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.topbar .cart {
+  margin-left: auto;
+  font-size: 20px;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  background: white;
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+
+/* ===== TABLE ===== */
+.cart-table {
+  width: 100%;
+  min-width: 900px;      /* để còn scroll ngang */
+  table-layout: fixed;   /* 🔥 chia đều cột */
+  border-collapse: collapse;
+}
+
+.cart-table th {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-table td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.cart-table img {
+  width: 50px;
+}
+
+.cart-table input {
+  width: 50px;
+  padding: 5px;
+}
+
+.price {
+  color: red;
+}
+
+.total {
+  font-weight: bold;
+}
+
+.delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* ===== ORDER FORM ===== */
+.order-box {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.order-box h3 {
+  color: #e53935;
+}
+
+.order-box input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}

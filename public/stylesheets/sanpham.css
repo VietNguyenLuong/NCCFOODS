@@ -1,0 +1,44 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 30px;
+}
+.sanpham {
+  padding-top: 150px;
+}
+.page-btn {
+  padding: 8px 14px;
+  border: 1px solid #730001;
+  color: #730001;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.page-btn:hover,
+.page-btn.active {
+  background: #730001;
+  color: #fff;
+}
+.search-box-sp {
+  /* display: flex;
+  justify-content: center; */
+  margin-bottom: 20px;
+}
+
+.search-input-sp {
+  padding: 8px 12px;
+  width: 260px;
+  border: 1px solid #ddd !important;
+  border-radius: 6px 0 0 6px;
+}
+
+.search-btn-sp {
+  padding: 8px 14px;
+  border: 1px solid #730001;
+  background: #730001;
+  color: #fff;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+}

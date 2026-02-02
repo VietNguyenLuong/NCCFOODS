@@ -1,0 +1,181 @@
+extends layoutQuanTri
+
+block content
+  .page-wrapper
+    // ===== HEADER =====
+    .page-header
+      h1 QUẢN LÝ SẢN PHẨM
+      .breadcrumb
+        a(href="#") Quản trị hệ thống
+        span /
+        span Quản lý sản phẩm
+
+    // ===== CARD =====
+    .card
+      .card-header
+        h3 Danh sách sản phẩm
+        button.btn(onclick=`addproducts()`).btn-primary Thêm mới sản phẩm
+
+      .card-tools
+        .show-entries
+          span Show
+          select
+            option 10
+            option 25
+            option 50
+          span entries
+
+        .search-box
+          label Search:
+          input#searchName(type="text" placeholder="" onchange="loadData()")
+
+      // ===== TABLE =====
+      table.product-table
+        thead
+          tr
+            th Tên sản phẩm
+            th Số lượng trong kho
+            th Giá
+            th Ảnh
+            th Mô tả
+            th Trạng thái
+            th Thao tác
+        tbody
+            each item in productss
+                tr
+                    td=item.name
+                    td=item.stock
+                    td=item.price
+                    td
+                      img.product-img(src=item.image_url)
+                    td
+                    td
+                      label.switch
+                          input(type="checkbox" checked onchange=`toggleStatus('${item._id}')`)
+                          span.slider
+                    td
+                      a(href=`/sanpham/getbyidqt/${item._id}`).btn-icon.edit ✎
+                      a(onclick=`deleteSP('${item._id}')`).btn-icon.delete 🗑
+
+    // ===== PAGINATION =====
+    .pagination-wrapper
+      .pagination-info
+        | Showing #{showingStart} to #{showingEnd} of #{totalProducts} entries
+
+      ul.pagination
+        if prevPage
+          li.page-item.active
+            a.page-link(href="#") Previous
+        each item in pages
+          li.page-item(class={ active: item.isActive })
+            a.page-link(href=`?page=${item.num}&name=${keyword}`)= item.num
+        if nextPage
+          li.page-item
+            a.page-link(href="#") Next          
+  // Modal thêm sản phẩm
+  .modal.fade#addActionModal(tabindex="-1" aria-labelledby="addActionModalLabel" aria-hidden="true")
+    .modal-dialog.modal-lg
+      .modal-content
+
+        // Header
+        .modal-header
+          h5#addActionModalLabel.modal-title Thêm mới sản phẩm
+          button.btn-close(
+            type="button"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          )
+
+        // Body
+        .modal-body
+          form#addProductForm(
+            action="/sanpham/create"
+            method="POST"
+            enctype="multipart/form-data"
+          )
+            .row.g-3
+
+              .col-md-12
+                label.form-label(for="name") Tên sản phẩm
+                input.form-control(
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                )
+
+              .col-md-6
+                label.form-label(for="stock") Số lượng trong kho
+                input.form-control(
+                  type="number"
+                  id="stock"
+                  name="stock"
+                  required
+                )
+
+              .col-md-6
+                label.form-label(for="category_id") Nhóm sản phẩm
+                select.form-control(
+                  id="category_id"
+                  name="category_id"
+                  required
+                )
+                  option(value="") -- Chọn nhóm sản phẩm --
+                  each cate in category
+                    option(
+                      value=cate._id
+                    )= cate.ten_nhom
+
+
+              .col-md-6
+                label.form-label(for="price") Giá
+                input.form-control(
+                  type="text"
+                  id="price"
+                  name="price"
+                  required
+                )
+
+              .col-md-6.checkbox-row
+                label.form-label(for="is_btb") Bao thecbe
+                input(type="checkbox" id="is_btb" name="is_btb")
+
+              .col-md-6.checkbox-row
+                label.form-label(for="is_general") Đơn riêng
+                input(type="checkbox" id="is_general" name="is_general")
+
+              .col-md-12
+                label.form-label(for="image_url") Ảnh
+                input.form-control(
+                  type="file"
+                  id="image_url"
+                  name="image_url"
+                  accept="image/*"
+                  required
+                )
+                img#preview(
+                  src="#"
+                  alt="Preview ảnh"
+                  style="margin-top:10px; max-height:200px; display:none;"
+                )
+
+              .col-12
+                label.form-label(for="description") Mô tả
+                textarea.form-control(
+                  id="description"
+                  name="description"
+                  rows="2"
+                )
+
+        // Footer
+        .modal-footer
+          button.btn.btn-secondary(
+            type="button"
+            onclick=`CloseModal()`
+          ) Đóng
+          button.btn.btn-primary(
+            type="submit"
+            form="addProductForm"
+          ) Lưu
+
+  script(src="/javascripts/sanpham.js")  

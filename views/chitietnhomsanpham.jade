@@ -1,0 +1,52 @@
+extends layoutQuanTri
+
+block content
+  .page-wrapper
+    // ===== HEADER =====
+    .page-header
+      h1 CHI TIẾT NHÓM SẢN PHẨM
+      .breadcrumb
+        a(href="/quantri") Quản trị hệ thống
+        span / 
+        a(href="/quantri/nhom") Nhóm sản phẩm
+        span / 
+        span Chi tiết
+
+    // ===== CARD =====
+    .card
+      .card-header
+        h3 Thông tin nhóm sản phẩm
+
+      .card-body
+        form(
+          action=`/nhomsanpham/update`
+          method="POST"
+        )
+          .row.g-3
+
+            // ID (chỉ xem)
+            .col-md-6
+              label.form-label ID nhóm
+              input.form-control(
+                type="text"
+                id="_id"
+                name="_id"
+                value=nhom._id
+                readonly
+              )
+
+            // Tên nhóm
+            .col-md-6
+              label.form-label(for="ten_nhom") Tên nhóm
+              input.form-control(
+                type="text"
+                id="ten_nhom"
+                name="ten_nhom"
+                value=nhom.ten_nhom
+                required
+              )
+
+            // Buttons
+            .col-12.mt-3
+              button.btn.btn-primary(type="submit") Xác nhận
+              a.btn.btn-secondary.ms-2(href="/nhomsanpham/getbypage") Quay lại
