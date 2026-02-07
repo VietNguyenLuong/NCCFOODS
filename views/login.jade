@@ -1,0 +1,36 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Đăng nhập quản trị
+    link(rel='stylesheet', href='/stylesheets/admin-login.css')
+
+  body
+    .login-wrapper
+      .login-box
+        h1 NCCFOODS
+        h2 Đăng nhập quản trị
+
+        form(method="POST" action="/taikhoan/loginAdmin")
+          .form-group
+            label(for="username") Tài khoản
+            input#email(
+              type="text"
+              name="username"
+              placeholder="Nhập tài khoản"
+              required
+            )
+
+          .form-group
+            label(for="password") Mật khẩu
+            input#password(
+              type="password"
+              name="password"
+              placeholder="Nhập mật khẩu"
+              required
+            )
+
+          button.btn-login(type="submit") Đăng nhập
+
+        p.footer © NCCFOODS Admin System

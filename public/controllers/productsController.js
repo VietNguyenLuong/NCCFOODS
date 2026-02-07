@@ -1,6 +1,5 @@
 const products = require("../models/products");
 const category = require("../models/category");
-const auth = require("../../config/authMiddleware");
 // Lấy danh sách tài khoản (có tìm kiếm theo name)
 exports.getall = async (req, res) => {
   try {

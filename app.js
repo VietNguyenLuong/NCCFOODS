@@ -4,7 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const connectDB = require('./config/db');
-
+const session = require("express-session");
+var app = express();
+app.use(session({
+  secret: "MY_SECRET_KEY",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 // 1 giờ
+  }
+}));
 var indexRouter = require('./routes/index');
 var hotroRouter = require('./routes/hotro');
 var errorRouter = require('./routes/error');
@@ -16,9 +25,10 @@ var taikhoanRouter = require('./routes/taikhoan');
 var giohangRouter = require('./routes/giohang');
 var donhangRouter = require('./routes/orders');
 var nhomsanphamRouter = require('./routes/nhomsanpham');
+var loginRouter = require('./routes/login');
 
 const port = process.env.PORT || 3000;
-var app = express();
+
 // Kết nối DB
 connectDB();
 // view engine setup
@@ -42,6 +52,7 @@ app.use('/taikhoan',taikhoanRouter);
 app.use('/giohang',giohangRouter);
 app.use('/donhang',donhangRouter);
 app.use('/nhomsanpham',nhomsanphamRouter);
+app.use('/login',loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const requireLogin = require("../config/authMiddleware");
 var nhomsanphamController = require("../public/controllers/NhomSanPhamController");
 router.get('/getall',nhomsanphamController.getcategory);
-router.get('/getbypage',nhomsanphamController.getall);
+router.get('/getbypage',requireLogin,nhomsanphamController.getall);
 router.post("/create",nhomsanphamController.createNhomSanPham);
 router.get("/getbyid/:id", nhomsanphamController.getbyid);
 router.delete("/delete/:id", nhomsanphamController.delete);

@@ -4,17 +4,17 @@ block content
   .page-wrapper
     // ===== HEADER =====
     .page-header
-      h1 QUẢN LÝ NHÓM SẢN PHẨM
+      h1 QUẢN LÝ TÀI KHOẢN
       .breadcrumb
         a(href="#") Quản trị hệ thống
         span /
-        span Quản lý nhóm sản phẩm
+        span Quản lý tài khoản
 
     // ===== CARD =====
     .card
       .card-header
-        h3 Danh sách nhóm sản phẩm
-        button.btn(onclick=`addproducts()`).btn-primary Thêm mới nhóm sản phẩm
+        h3 Danh sách tài khoản
+        button.btn(onclick=`addproducts()`).btn-primary Thêm mới 
 
       .card-tools
         .show-entries
@@ -37,21 +37,21 @@ block content
             th Trạng thái
             th Thao tác
         tbody
-            each item in categorys
+            each item in data
                 tr
-                    td=item.ten_nhom
+                    td=item.username
                     td
                       label.switch
-                          input(type="checkbox" checked onchange=`toggleStatus('${item._id}')`)
+                          input(type="checkbox" checked=item.isActive onchange=`toggleStatus('${item._id}')`)
                           span.slider
                     td
-                      a(href=`/nhomsanpham/getbyid/${item._id}`).btn-icon.edit ✎
+                      a(href=`/taikhoan/getbyidQT/${item._id}`).btn-icon.edit ✎
                       a(onclick=`deleteSP('${item._id}')`).btn-icon.delete 🗑
 
     // ===== PAGINATION =====
     .pagination-wrapper
       .pagination-info
-        | Showing #{showingStart} to #{showingEnd} of #{totalcategorys} entries
+        | Showing #{showingStart} to #{showingEnd} of #{total} entries
 
       ul.pagination
         if prevPage
@@ -70,40 +70,80 @@ block content
 
         // Header
         .modal-header
-          h5#addActionModalLabel.modal-title Thêm mới sản phẩm
+          h5#addActionModalLabel.modal-title Thêm mới tài khoản
           button.btn-close(
             type="button"
             data-bs-dismiss="modal"
             aria-label="Close"
-             onclick=`CloseModal()`
+            onclick="CloseModal()"
           )
 
         // Body
         .modal-body
           form#addCategoryForm(
-            action="/nhomsanpham/create"
+            action="/taikhoan/create"
             method="POST"
           )
             .row.g-3
-
-              .col-md-12
-                label.form-label(for="ten_nhom") Tên sản phẩm
+              .col-md-6
+                label.form-label(for="username") Tài khoản
                 input.form-control(
                   type="text"
-                  id="ten_nhom"
-                  name="ten_nhom"
+                  id="username"
+                  name="username"
                   required
                 )
+
+              .col-md-6
+                label.form-label(for="password") Mật khẩu
+                input.form-control(
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                )
+
+            .row.g-3.mt-2
+              .col-md-6
+                label.form-label(for="phone") Số điện thoại
+                input.form-control(
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  required
+                )
+
+              .col-md-6
+                label.form-label(for="address") Địa chỉ
+                input.form-control(
+                  type="text"
+                  id="address"
+                  name="address"
+                  required
+                )
+
+            .row.g-3.mt-2
+              .col-md-6
+                label.form-label(for="role") Phân quyền
+                select.form-select(
+                  id="role"
+                  name="role"
+                  required
+                )
+                  option(value="" disabled selected) -- Chọn phân quyền --
+                  option(value="admin") admin
+                  option(value="checkbill") checkbill
+                  option(value="dongdon") dongdon
 
         // Footer
         .modal-footer
           button.btn.btn-secondary(
             type="button"
-            onclick=`CloseModal()`
+            onclick="CloseModal()"
           ) Đóng
           button.btn.btn-primary(
             type="submit"
             form="addCategoryForm"
           ) Lưu
 
-  script(src="/javascripts/nhomsanpham.js")  
+  script(src="/javascripts/taikhoanQuantri.js")  

@@ -1,0 +1,74 @@
+extends layoutQuanTri
+
+block content
+  .container.mt-4
+    .row.justify-content-center
+      .col-lg-8
+        .card.shadow-sm
+          .card-header.bg-primary.text-white
+            h5.mb-0 Sửa thông tin tài khoản
+
+          .card-body
+            form(
+              action="/taikhoan/updateQT"
+              method="POST"
+            )
+                 
+              .row.g-3
+                .col-md-6
+                  label.form-label(for="username") Tài khoản
+                  input.form-control(
+                    type="text"
+                    id="username"
+                    name="username"
+                    value=account.username
+                    required
+                  )
+
+                .col-md-6
+                  label.form-label(for="password") Mật khẩu
+                  input.form-control(
+                    type="text"
+                    id="password"
+                    name="password"
+                    value=account.password
+                    placeholder="Để trống nếu không đổi"
+                  )
+
+              .row.g-3.mt-2
+                .col-md-6
+                  label.form-label(for="phone") Số điện thoại
+                  input.form-control(
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    value=account.phone
+                    required
+                  )
+
+                .col-md-6
+                  label.form-label(for="address") Địa chỉ
+                  input.form-control(
+                    type="text"
+                    id="address"
+                    name="address"
+                    value=account.address
+                    required
+                  )
+
+              .row.g-3.mt-2
+                .col-md-6
+                  label.form-label(for="role") Phân quyền
+                  select.form-select(
+                    id="role"
+                    name="role"
+                    required
+                  )
+                    option(value="admin" selected=account.role === 'admin') admin
+                    option(value="checkbill" selected=account.role === 'checkbill') checkbill
+                    option(value="dongdon" selected=account.role === 'dongdon') dongdon
+                   input(type="hidden" name="_id" value=account._id)
+              .card-footer.text-end.mt-2
+                  a.btn.btn-secondary(href="/taikhoan") Hủy
+                  button.btn.btn-primary(type="submit") Lưu thay đổi
+    script(src="/javascripts/chitiettaikhoan.js")  

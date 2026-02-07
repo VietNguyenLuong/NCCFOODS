@@ -1,22 +1,13 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = function (req, res, next) {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader) {
-    return res.status(401).json({ message: "Không có token" });
+module.exports = function requireLogin(req, res, next) {
+  if (!req.session || !req.session.admin) {
+    // API thì trả JSON
+    console.log(req.session.admin)
+    return res.render("login", {
+      error: "Vui lòng đăng nhập để tiếp tục"
+    });
   }
 
-  const token = authHeader.split(" ")[1]; // Bearer xxx
-
-  try {
-    const decoded = jwt.verify(token, "MY_SECRET_KEY");
-
-    // 🔥 LƯU USER VÀO REQUEST
-    req.user = decoded;
-
-    next();
-  } catch (err) {
-    return res.status(401).json({ message: "Token không hợp lệ" });
-  }
+  next(); // cho đi tiếp
 };
